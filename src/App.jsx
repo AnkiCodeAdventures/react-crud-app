@@ -5,7 +5,7 @@ import AllPosts from "./components/AllPosts";
 
 function App() {
   return (
-    <Box width="100vw" minHeight="100vh" bgcolor={"#005b96"}>
+    <Box maxWidth="100vw" minHeight="100vh" bgcolor={"#005b96"} p="2rem">
       <Header />
       <AllPosts />
     </Box>

@@ -15,14 +15,16 @@ function AllPosts() {
       {posts.map((post) => (
         <Box
           key={post.id}
-          width={1200}
-          height={180}
+          width="80%"
+          my="2rem"
+          mx="auto"
+          px="2rem"
+          pt="3rem"
+          pb="2rem"
+          minHeight={180}
           border={3}
           borderRadius={10}
           borderColor="darkblue"
-          margin="2rem"
-          paddingLeft="65px"
-          paddingTop="45px"
         >
           <p style={{ fontSize: "20px" }}>{post.title}</p>
           <p>{post.body}</p>
