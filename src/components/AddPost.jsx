@@ -1,10 +1,38 @@
 import { Box, Button, TextField } from "@mui/material";
 import { useState } from "react";
+import { PropTypes } from "prop-types";
 
-function AddPost() {
-  const [post, SetPost] = useState();
+function AddPost({ posts, setPosts }) {
+  const [text, SetText] = useState();
+
+  function handlePostSubmit() {
+    {
+      fetch("https://jsonplaceholder.typicode.com/posts", {
+        method: "POST",
+        body: JSON.stringify({
+          title: "Ankita",
+          body: text,
+          userId: 1,
+        }),
+        headers: {
+          "Content-type": "application/json; charset=UTF-8",
+        },
+      })
+        .then((response) => response.json())
+        .then((json) => setPosts((prevValue) => [json, ...prevValue]))
+        .catch((err) => console.log(err));
+    }
+  }
+
   return (
-    <div style={{ display: "flex", flexDirection: "column" }}>
+    <div
+      style={{
+        display: "flex",
+        flexDirection: "column",
+        width: "80%",
+        margin: "0 auto",
+      }}
+    >
       <Box
         minHeight={110}
         border={3}
@@ -25,8 +53,8 @@ function AddPost() {
             },
             "&  textarea": { color: "white" },
           }}
-          value={post}
-          onChange={(event) => SetPost(event.target.value)}
+          value={text}
+          onChange={(event) => SetText(event.target.value)}
         />
       </Box>
       <Button
@@ -37,26 +65,17 @@ function AddPost() {
           width: "15%",
           alignSelf: "flex-end",
         }}
-        onClick={() => {
-          fetch("https://jsonplaceholder.typicode.com/posts", {
-            method: "POST",
-            body: JSON.stringify({
-              title: "foo",
-              body: post,
-              userId: 1,
-            }),
-            headers: {
-              "Content-type": "application/json; charset=UTF-8",
-            },
-          })
-            .then((response) => response.json())
-            .then((json) => console.log(json));
-        }}
+        onClick={handlePostSubmit}
       >
         POST
       </Button>
     </div>
   );
 }
+
+AddPost.propTypes = {
+  posts: PropTypes.object,
+  setPosts: PropTypes.string,
+};
 
 export default AddPost;
