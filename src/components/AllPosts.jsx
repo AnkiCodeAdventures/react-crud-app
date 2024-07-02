@@ -1,7 +1,5 @@
-import { Box, Button } from "@mui/material";
 import { useEffect } from "react";
-import { PropTypes } from "prop-types";
-import DeleteRoundedIcon from "@mui/icons-material/DeleteRounded";
+import RenderComponent from "./RenderComponent";
 
 function AllPosts({ posts, setPosts }) {
   useEffect(() => {
@@ -25,36 +23,40 @@ function AllPosts({ posts, setPosts }) {
       });
   }
 
+  function handleUpdatePost(UpdateId, text) {
+    return fetch(`https://jsonplaceholder.typicode.com/posts/${UpdateId}`, {
+      method: "PUT",
+      body: JSON.stringify({
+        id: 1,
+        title: "foo",
+        body: text,
+        userId: 1,
+      }),
+      headers: {
+        "Content-type": "application/json; charset=UTF-8",
+      },
+    }).catch((err) => console.log(err));
+  }
+
   return (
-    <div>
+    <div
+      style={{
+        width: "80%",
+        display: "flex",
+        flexDirection: "column",
+        margin: "0 auto",
+      }}
+    >
       {posts.map((post) => (
-        <Box
+        <RenderComponent
           key={post.id}
-          width="80%"
-          my="2rem"
-          mx="auto"
-          px="2rem"
-          pt="3rem"
-          pb="2rem"
-          minHeight={180}
-          border={3}
-          borderRadius={10}
-          borderColor="darkblue"
-        >
-          <p style={{ fontSize: "20px" }}>{post.title}</p>
-          <p>{post.body}</p>
-          <Button variant="contained" onClick={() => handleDeletePost(post.id)}>
-            <DeleteRoundedIcon />
-          </Button>
-        </Box>
+          post={post}
+          handleDeletePost={handleDeletePost}
+          handleUpdatePost={handleUpdatePost}
+        />
       ))}
     </div>
   );
 }
-
-AllPosts.propTypes = {
-  posts: PropTypes.object,
-  setPosts: PropTypes.string,
-};
 
 export default AllPosts;

@@ -1,9 +1,8 @@
 import { Box, Button, TextField } from "@mui/material";
 import { useState } from "react";
-import { PropTypes } from "prop-types";
 
-function AddPost({ posts, setPosts }) {
-  const [text, SetText] = useState();
+function AddPost({ setPosts }) {
+  const [text, setText] = useState("");
 
   function handlePostSubmit() {
     {
@@ -27,9 +26,9 @@ function AddPost({ posts, setPosts }) {
   return (
     <div
       style={{
+        width: "80%",
         display: "flex",
         flexDirection: "column",
-        width: "80%",
         margin: "0 auto",
       }}
     >
@@ -54,10 +53,11 @@ function AddPost({ posts, setPosts }) {
             "&  textarea": { color: "white" },
           }}
           value={text}
-          onChange={(event) => SetText(event.target.value)}
+          onChange={(event) => setText(event.target.value)}
         />
       </Box>
       <Button
+        aria-label="submit"
         variant="contained"
         sx={{
           margin: "1rem",
@@ -72,10 +72,5 @@ function AddPost({ posts, setPosts }) {
     </div>
   );
 }
-
-AddPost.propTypes = {
-  posts: PropTypes.object,
-  setPosts: PropTypes.string,
-};
 
 export default AddPost;
