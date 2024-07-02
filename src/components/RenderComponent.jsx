@@ -2,11 +2,13 @@ import { Box, Button, TextField } from "@mui/material";
 import DeleteRoundedIcon from "@mui/icons-material/DeleteRounded";
 import CreateRoundedIcon from "@mui/icons-material/CreateRounded";
 import CheckCircleRoundedIcon from "@mui/icons-material/CheckCircleRounded";
+import HourglassFullTwoToneIcon from "@mui/icons-material/HourglassFullTwoTone";
 import { useState } from "react";
 
 function RenderComponent({ post, handleDeletePost, handleUpdatePost }) {
   const [postText, setPostText] = useState(() => post.body);
   const [isEditing, setIsEditing] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
 
   return (
     <div>
@@ -18,6 +20,7 @@ function RenderComponent({ post, handleDeletePost, handleUpdatePost }) {
         px="2rem"
         pt="3rem"
         pb="2rem"
+        mb="3rem"
       >
         <TextField
           fullWidth
@@ -36,6 +39,7 @@ function RenderComponent({ post, handleDeletePost, handleUpdatePost }) {
             "&  textarea": { color: "white" },
           }}
         />
+
         <Button
           aria-label="delete"
           variant="contained"
@@ -56,13 +60,20 @@ function RenderComponent({ post, handleDeletePost, handleUpdatePost }) {
             aria-label="update"
             variant="contained"
             onClick={() => {
+              setIsLoading(true);
               handleUpdatePost(post.id, postText).then(() => {
+                setIsLoading(false);
                 setIsEditing(false);
               });
             }}
           >
             <CheckCircleRoundedIcon />
           </Button>
+        ) : null}
+        {isLoading ? (
+          <Box display="flex" justifyContent="flex-end">
+            <HourglassFullTwoToneIcon />
+          </Box>
         ) : null}
       </Box>
     </div>
