@@ -1,12 +1,13 @@
 import { Box, Button, TextField } from "@mui/material";
 import { useState } from "react";
+import { API_ROUTES } from "../utils/constants";
 
 function AddPost({ setPosts }) {
   const [text, setText] = useState("");
 
   function handlePostSubmit() {
     {
-      fetch("https://jsonplaceholder.typicode.com/posts", {
+      fetch(API_ROUTES.POSTS, {
         method: "POST",
         body: JSON.stringify({
           title: "Ankita",

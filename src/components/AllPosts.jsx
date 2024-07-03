@@ -1,16 +1,17 @@
 import { useEffect } from "react";
 import RenderComponent from "./RenderComponent";
+import { API_ROUTES } from "../utils/constants";
 
 function AllPosts({ posts, setPosts }) {
   useEffect(() => {
-    fetch("https://jsonplaceholder.typicode.com/posts")
+    fetch(API_ROUTES.POSTS)
       .then((response) => response.json())
       .then((json) => setPosts(json))
       .catch((err) => console.log(err));
   }, [setPosts]);
 
   function handleDeletePost(postId) {
-    fetch(`https://jsonplaceholder.typicode.com/posts/${postId}`, {
+    fetch(`${API_ROUTES.POSTS}/${postId}`, {
       method: "DELETE",
     })
       .then(() => {
@@ -24,7 +25,7 @@ function AllPosts({ posts, setPosts }) {
   }
 
   function handleUpdatePost(UpdateId, text) {
-    return fetch(`https://jsonplaceholder.typicode.com/posts/${UpdateId}`, {
+    return fetch(`${API_ROUTES.POSTS}/${UpdateId}`, {
       method: "PUT",
       body: JSON.stringify({
         id: 1,
