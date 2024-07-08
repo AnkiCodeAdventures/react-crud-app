@@ -2,16 +2,15 @@ import { Box } from "@mui/material";
 import "./App.css";
 import Header from "./components/Header";
 import AllPosts from "./components/AllPosts";
-import { useState } from "react";
 import AddPost from "./components/AddPost";
+import usePosts from "./hooks/usePosts";
 
 function App() {
-  const [posts, setPosts] = useState([]);
-
+  const { posts, setPosts, addPost } = usePosts();
   return (
     <Box width="100vw" minHeight="100vh" bgcolor={"#005b96"} p="2rem">
       <Header />
-      <AddPost setPosts={setPosts} />
+      <AddPost addPost={addPost} />
       <AllPosts posts={posts} setPosts={setPosts} />
     </Box>
   );

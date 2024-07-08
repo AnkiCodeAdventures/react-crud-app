@@ -1,28 +1,8 @@
 import { Box, Button, TextField } from "@mui/material";
 import { useState } from "react";
-import { API_ROUTES } from "../utils/constants";
 
-function AddPost({ setPosts }) {
+function AddPost({ addPost }) {
   const [text, setText] = useState("");
-
-  function handlePostSubmit() {
-    {
-      fetch(API_ROUTES.POSTS, {
-        method: "POST",
-        body: JSON.stringify({
-          title: "Ankita",
-          body: text,
-          userId: 1,
-        }),
-        headers: {
-          "Content-type": "application/json; charset=UTF-8",
-        },
-      })
-        .then((response) => response.json())
-        .then((json) => setPosts((prevValue) => [json, ...prevValue]))
-        .catch((err) => console.log(err));
-    }
-  }
 
   return (
     <div
@@ -66,7 +46,7 @@ function AddPost({ setPosts }) {
           width: "15%",
           alignSelf: "flex-end",
         }}
-        onClick={handlePostSubmit}
+        onClick={() => addPost(text)}
       >
         POST
       </Button>
