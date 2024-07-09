@@ -49,6 +49,7 @@ function AddPost({ addPost, fetchAllPosts }) {
         onClick={() => {
           addPost(text);
           fetchAllPosts();
+          setText("");
         }}
       >
         POST

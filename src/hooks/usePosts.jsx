@@ -19,14 +19,22 @@ function usePosts() {
   async function addPost(text) {
     const response = await fetch(API_ROUTES.POSTS, {
       method: "POST",
-
-      //   body: JSON.stringify({ body: text, title: "foo", userId: "1" }),
       body: `{ "body": "${text}", "title": "foo", "userId": 1 }`,
     });
-    const json = await response.json();
   }
 
-  return { posts, setPosts, fetchAllPosts, addPost };
+  async function updatePost(updatedText, postId) {
+    const response = await fetch(`${API_ROUTES.POSTS}/${postId}`, {
+      method: "PUT",
+      body: `{
+        "body" : "${updatedText}",
+        "userId" : 1,
+        "title" : "foo"
+        }`,
+    });
+  }
+
+  return { posts, setPosts, fetchAllPosts, addPost, updatePost };
 }
 
 export default usePosts;

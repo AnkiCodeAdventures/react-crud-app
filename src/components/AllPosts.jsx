@@ -1,7 +1,7 @@
 import RenderComponent from "./RenderComponent";
 import { API_ROUTES } from "../utils/constants";
 
-function AllPosts({ posts, setPosts }) {
+function AllPosts({ posts, setPosts, updatePost, fetchAllPosts }) {
   function handleDeletePost(postId) {
     fetch(`${API_ROUTES.POSTS}/${postId}`, {
       method: "DELETE",
@@ -14,21 +14,6 @@ function AllPosts({ posts, setPosts }) {
       .catch((err) => {
         console.log(err);
       });
-  }
-
-  function handleUpdatePost(UpdateId, text) {
-    return fetch(`${API_ROUTES.POSTS}/${UpdateId}`, {
-      method: "PUT",
-      body: JSON.stringify({
-        id: 1,
-        title: "foo",
-        body: text,
-        userId: 1,
-      }),
-      headers: {
-        "Content-type": "application/json; charset=UTF-8",
-      },
-    }).catch((err) => console.log(err));
   }
 
   return (
@@ -45,7 +30,8 @@ function AllPosts({ posts, setPosts }) {
           key={post.id}
           post={post}
           handleDeletePost={handleDeletePost}
-          handleUpdatePost={handleUpdatePost}
+          updatePost={updatePost}
+          fetchAllPosts={fetchAllPosts}
         />
       ))}
     </div>
