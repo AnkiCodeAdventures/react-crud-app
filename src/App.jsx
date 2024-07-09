@@ -6,11 +6,11 @@ import AddPost from "./components/AddPost";
 import usePosts from "./hooks/usePosts";
 
 function App() {
-  const { posts, setPosts, addPost } = usePosts();
+  const { posts, setPosts, addPost, fetchAllPosts } = usePosts();
   return (
     <Box width="100vw" minHeight="100vh" bgcolor={"#005b96"} p="2rem">
       <Header />
-      <AddPost addPost={addPost} />
+      <AddPost addPost={addPost} fetchAllPosts={fetchAllPosts} />
       <AllPosts posts={posts} setPosts={setPosts} />
     </Box>
   );

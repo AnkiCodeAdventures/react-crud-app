@@ -1,7 +1,7 @@
 import { Box, Button, TextField } from "@mui/material";
 import { useState } from "react";
 
-function AddPost({ addPost }) {
+function AddPost({ addPost, fetchAllPosts }) {
   const [text, setText] = useState("");
 
   return (
@@ -46,7 +46,10 @@ function AddPost({ addPost }) {
           width: "15%",
           alignSelf: "flex-end",
         }}
-        onClick={() => addPost(text)}
+        onClick={() => {
+          addPost(text);
+          fetchAllPosts();
+        }}
       >
         POST
       </Button>

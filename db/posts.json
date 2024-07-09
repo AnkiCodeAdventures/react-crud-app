@@ -23,6 +23,18 @@
       "body": "hgfjghfghfhffgdgfsfjddvhfghdygd",
       "title": "foo",
       "userId": 1
+    },
+    {
+      "id": "e921",
+      "body": "I am currently reading Joyful by Engrid Fetalle",
+      "title": "foo",
+      "userId": 1
+    },
+    {
+      "id": "b958",
+      "body": "I am fetching all posts",
+      "title": "foo",
+      "userId": 1
     }
   ]
 }
