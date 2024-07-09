@@ -34,7 +34,13 @@ function usePosts() {
     });
   }
 
-  return { posts, setPosts, fetchAllPosts, addPost, updatePost };
+  async function deletePost(deleteId) {
+    const response = await fetch(`${API_ROUTES.POSTS}/${deleteId}`, {
+      method: "DELETE",
+    });
+  }
+
+  return { posts, setPosts, fetchAllPosts, addPost, updatePost, deletePost };
 }
 
 export default usePosts;

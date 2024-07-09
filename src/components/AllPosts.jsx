@@ -1,21 +1,6 @@
 import RenderComponent from "./RenderComponent";
-import { API_ROUTES } from "../utils/constants";
 
-function AllPosts({ posts, setPosts, updatePost, fetchAllPosts }) {
-  function handleDeletePost(postId) {
-    fetch(`${API_ROUTES.POSTS}/${postId}`, {
-      method: "DELETE",
-    })
-      .then(() => {
-        setPosts((prevValue) => {
-          return prevValue.filter((post) => post.id !== postId);
-        });
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-  }
-
+function AllPosts({ posts, updatePost, fetchAllPosts, deletePost }) {
   return (
     <div
       style={{
@@ -29,8 +14,8 @@ function AllPosts({ posts, setPosts, updatePost, fetchAllPosts }) {
         <RenderComponent
           key={post.id}
           post={post}
-          handleDeletePost={handleDeletePost}
           updatePost={updatePost}
+          deletePost={deletePost}
           fetchAllPosts={fetchAllPosts}
         />
       ))}

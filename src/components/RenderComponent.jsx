@@ -4,12 +4,7 @@ import CreateRoundedIcon from "@mui/icons-material/CreateRounded";
 import CheckCircleRoundedIcon from "@mui/icons-material/CheckCircleRounded";
 import { useState } from "react";
 
-function RenderComponent({
-  post,
-  handleDeletePost,
-  updatePost,
-  fetchAllPosts,
-}) {
+function RenderComponent({ post, deletePost, updatePost, fetchAllPosts }) {
   const [postText, setPostText] = useState(() => post.body);
   const [isEditing, setIsEditing] = useState(false);
 
@@ -46,7 +41,10 @@ function RenderComponent({
         <Button
           aria-label="delete"
           variant="contained"
-          onClick={() => handleDeletePost(post.id)}
+          onClick={() => {
+            deletePost(post.id);
+            fetchAllPosts();
+          }}
         >
           <DeleteRoundedIcon />
         </Button>

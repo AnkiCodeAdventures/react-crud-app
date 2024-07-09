@@ -6,7 +6,8 @@ import AddPost from "./components/AddPost";
 import usePosts from "./hooks/usePosts";
 
 function App() {
-  const { posts, setPosts, addPost, fetchAllPosts, updatePost } = usePosts();
+  const { posts, setPosts, addPost, fetchAllPosts, updatePost, deletePost } =
+    usePosts();
   return (
     <Box width="100vw" minHeight="100vh" bgcolor={"#005b96"} p="2rem">
       <Header />
@@ -16,6 +17,7 @@ function App() {
         setPosts={setPosts}
         updatePost={updatePost}
         fetchAllPosts={fetchAllPosts}
+        deletePost={deletePost}
       />
     </Box>
   );

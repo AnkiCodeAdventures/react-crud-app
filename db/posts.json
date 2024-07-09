@@ -1,24 +1,6 @@
 {
   "posts": [
     {
-      "body": "My name is Ankita",
-      "userId": 1,
-      "title": "foo",
-      "id": "950d"
-    },
-    {
-      "id": "c904",
-      "body": "heelow",
-      "title": "foo",
-      "userId": 1
-    },
-    {
-      "id": "21de",
-      "body": "gffhfhffhfff",
-      "title": "foo",
-      "userId": "1"
-    },
-    {
       "body": "Boundaries = freedom",
       "userId": 1,
       "title": "foo",
@@ -29,36 +11,6 @@
       "body": "I am currently reading Joyful by Engrid Fetalle",
       "title": "foo",
       "userId": 1
-    },
-    {
-      "id": "b958",
-      "body": "I am fetching all posts",
-      "title": "foo",
-      "userId": 1
-    },
-    {
-      "id": "eaa2",
-      "body": "testing",
-      "title": "foo",
-      "userId": 1
-    },
-    {
-      "id": "5748",
-      "body": "test 2",
-      "title": "foo",
-      "userId": 1
-    },
-    {
-      "id": "b35a",
-      "body": "test 3",
-      "title": "foo",
-      "userId": 1
-    },
-    {
-      "body": "test 4.0.5",
-      "userId": 1,
-      "title": "foo",
-      "id": "649e"
     }
   ]
 }
