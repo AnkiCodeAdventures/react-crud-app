@@ -17,14 +17,14 @@ function usePosts() {
   }
 
   async function addPost(text) {
-    const response = await fetch(API_ROUTES.POSTS, {
+    await fetch(API_ROUTES.POSTS, {
       method: "POST",
       body: `{ "body": "${text}", "title": "foo", "userId": 1 }`,
     });
   }
 
   async function updatePost(updatedText, postId) {
-    const response = await fetch(`${API_ROUTES.POSTS}/${postId}`, {
+    await fetch(`${API_ROUTES.POSTS}/${postId}`, {
       method: "PUT",
       body: `{
         "body" : "${updatedText}",
@@ -35,7 +35,7 @@ function usePosts() {
   }
 
   async function deletePost(deleteId) {
-    const response = await fetch(`${API_ROUTES.POSTS}/${deleteId}`, {
+    await fetch(`${API_ROUTES.POSTS}/${deleteId}`, {
       method: "DELETE",
     });
   }

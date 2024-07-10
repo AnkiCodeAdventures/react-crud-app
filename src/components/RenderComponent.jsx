@@ -41,9 +41,9 @@ function RenderComponent({ post, deletePost, updatePost, fetchAllPosts }) {
         <Button
           aria-label="delete"
           variant="contained"
-          onClick={() => {
-            deletePost(post.id);
-            fetchAllPosts();
+          onClick={async () => {
+            await deletePost(post.id);
+            await fetchAllPosts();
           }}
         >
           <DeleteRoundedIcon />
@@ -60,10 +60,10 @@ function RenderComponent({ post, deletePost, updatePost, fetchAllPosts }) {
           <Button
             aria-label="update"
             variant="contained"
-            onClick={() => {
-              updatePost(postText, post.id);
+            onClick={async () => {
+              await updatePost(postText, post.id);
               setIsEditing(false);
-              fetchAllPosts();
+              await fetchAllPosts();
             }}
           >
             <CheckCircleRoundedIcon />
