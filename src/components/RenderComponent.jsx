@@ -2,11 +2,13 @@ import { Box, Button, TextField } from "@mui/material";
 import DeleteRoundedIcon from "@mui/icons-material/DeleteRounded";
 import CreateRoundedIcon from "@mui/icons-material/CreateRounded";
 import CheckCircleRoundedIcon from "@mui/icons-material/CheckCircleRounded";
+import HourglassFullIcon from "@mui/icons-material/HourglassFull";
 import { useState } from "react";
 
 function RenderComponent({ post, deletePost, updatePost, fetchAllPosts }) {
   const [postText, setPostText] = useState(() => post.body);
   const [isEditing, setIsEditing] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
 
   return (
     <div>
@@ -41,33 +43,45 @@ function RenderComponent({ post, deletePost, updatePost, fetchAllPosts }) {
         <Button
           aria-label="delete"
           variant="contained"
+          disabled={isLoading ? true : false}
           onClick={async () => {
+            setIsLoading(true);
             await deletePost(post.id);
             await fetchAllPosts();
           }}
         >
           <DeleteRoundedIcon />
         </Button>
+
         <Button
           aria-label="edit"
           variant="contained"
           onClick={() => setIsEditing(true)}
-          disabled={isEditing ? true : null}
+          disabled={isEditing ? true : false}
         >
           <CreateRoundedIcon />
         </Button>
+
         {isEditing ? (
-          <Button
-            aria-label="update"
-            variant="contained"
-            onClick={async () => {
-              await updatePost(postText, post.id);
-              setIsEditing(false);
-              await fetchAllPosts();
-            }}
-          >
-            <CheckCircleRoundedIcon />
-          </Button>
+          isLoading ? (
+            <Button aria-label="loading" variant="contained">
+              <HourglassFullIcon />
+            </Button>
+          ) : (
+            <Button
+              aria-label="update"
+              variant="contained"
+              onClick={async () => {
+                setIsLoading(true);
+                await updatePost(postText, post.id);
+                setIsEditing(false);
+                await fetchAllPosts();
+                setIsLoading(false);
+              }}
+            >
+              <CheckCircleRoundedIcon />
+            </Button>
+          )
         ) : null}
       </Box>
     </div>

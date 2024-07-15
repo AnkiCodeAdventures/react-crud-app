@@ -3,6 +3,7 @@ import { useState } from "react";
 
 function AddPost({ addPost, fetchAllPosts }) {
   const [text, setText] = useState("");
+  const [isLoading, setIsLoading] = useState(false);
 
   return (
     <div
@@ -40,19 +41,22 @@ function AddPost({ addPost, fetchAllPosts }) {
       <Button
         aria-label="submit"
         variant="contained"
+        disabled={isLoading ? true : false}
         sx={{
           margin: "1rem",
           borderRadius: "5",
           width: "15%",
           alignSelf: "flex-end",
         }}
-        onClick={() => {
-          addPost(text);
-          fetchAllPosts();
+        onClick={async () => {
+          setIsLoading(true);
+          await addPost(text);
+          await fetchAllPosts();
           setText("");
+          setIsLoading(false);
         }}
       >
-        POST
+        {isLoading ? "POSTING..." : "POST"}
       </Button>
     </div>
   );
